@@ -1,0 +1,44 @@
+# cleaning data methods
+
+#-missing values, how to find them
+
+data_df['REF.'].isna()
+
+data_df[data_df['REF.'].isna()]
+
+data_df['REF.'].isna().sum()
+
+data_df.isna().sum()
+
+
+# -missing values, how to get rid of them
+
+data_df[data_df['REF.'].notna()]
+
+~data_df[data_df['REF.'].isna()]
+
+data_df.dropna() #null values
+
+data_df.dropna(subset=['REF.', 'REF.Code'])
+
+data_df.dropna(how='all')
+
+data_df.dropna(how='any', axis='columns')
+
+
+# -missing values, how to fill 
+
+data_df['REF.'].fillna('MISSING')
+
+data_df['REF.'].fillna(method='ffill')
+
+data_df['REF.'].fillna(method='bfill')
+
+
+# -missing values, how to fill with data from another dataframe
+
+data_df1 = data_df1.set_index('REF.')
+
+data_df2 = data_df2.set_index('REF.')
+
+data_df1 = data_df1.fillna(data_df2)
